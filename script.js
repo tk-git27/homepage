@@ -1,23 +1,53 @@
+const projectTrack = document.querySelector(".project-track");
+const urlParams = new URLSearchParams(window.location.search);
+
+
 /* =========================================================
    PROJEKT-SLIDER
    ========================================================= */
 
-const projectTrack = document.querySelector(".project-track");
-
 if (projectTrack) {
 
-    const projects = document.querySelectorAll(".project");
-    const previousProjectButton = document.querySelector(".previous");
-    const nextProjectButton = document.querySelector(".next");
-    const projectDots = document.querySelectorAll(".slider-dots button");
+    const projectContainer =
+        document.querySelector(".project-container");
 
-    let currentProject = 0;
+    const projects =
+        document.querySelectorAll(".project");
+
+    const previousProjectButton =
+        document.querySelector(".previous");
+
+    const nextProjectButton =
+        document.querySelector(".next");
+
+    const projectDots =
+        document.querySelectorAll(".slider-dots button");
+
+    let currentProject =
+        Number(urlParams.get("project")) || 0;
 
 
-    function showProject(index) {
+    function showProject(index, animate = true) {
+
+        if (animate) {
+
+            projectTrack.style.transition =
+                "transform 0.4s ease";
+
+        } else {
+
+            projectTrack.style.transition =
+                "none";
+
+        }
+
 
         projectTrack.style.transform =
             `translateX(-${index * 100}%)`;
+
+
+        projectContainer.style.height =
+            `${projects[index].offsetHeight}px`;
 
 
         projectDots.forEach((dot, i) => {
@@ -83,7 +113,49 @@ if (projectTrack) {
     });
 
 
-    showProject(currentProject);
+    /* =========================================================
+       PROJEKT-SWIPE
+       ========================================================= */
+
+    let touchStartX = 0;
+
+
+    projectTrack.addEventListener("touchstart", (event) => {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    });
+
+
+    projectTrack.addEventListener("touchend", (event) => {
+
+        const touchEndX =
+            event.changedTouches[0].screenX;
+
+        const swipeDistance =
+            touchEndX - touchStartX;
+
+
+        if (Math.abs(swipeDistance) < 50) {
+            return;
+        }
+
+
+        if (swipeDistance < 0) {
+
+            nextProject();
+
+        } else {
+
+            previousProject();
+
+        }
+
+    });
+
+
+    showProject(currentProject, false);
 
 }
 
@@ -92,7 +164,9 @@ if (projectTrack) {
    SCREENSHOT-SLIDER
    ========================================================= */
 
-const screenshotTrack = document.querySelector(".screenshot-track");
+const screenshotTrack =
+    document.querySelector(".screenshot-track");
+
 
 if (screenshotTrack) {
 
@@ -178,6 +252,155 @@ if (screenshotTrack) {
         });
 
     });
+
+
+    /* =========================================================
+       SCREENSHOT-SWIPE INNERHALB DES CONTAINERS
+       ========================================================= */
+
+    let screenshotTouchStartX = 0;
+
+
+    screenshotTrack.addEventListener(
+        "touchstart",
+        (event) => {
+
+            screenshotTouchStartX =
+                event.changedTouches[0].screenX;
+
+        }
+    );
+
+
+    screenshotTrack.addEventListener(
+        "touchend",
+        (event) => {
+
+            const screenshotTouchEndX =
+                event.changedTouches[0].screenX;
+
+            const swipeDistance =
+                screenshotTouchEndX -
+                screenshotTouchStartX;
+
+
+            if (Math.abs(swipeDistance) < 50) {
+                return;
+            }
+
+
+            if (swipeDistance < 0) {
+
+                nextScreenshot();
+
+            } else {
+
+                previousScreenshot();
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       ZURÜCK-SWIPE AUSSERHALB DES CONTAINERS
+       ========================================================= */
+
+    let pageTouchStartX = 0;
+    let pageTouchStartY = 0;
+
+
+    document.addEventListener(
+        "touchstart",
+        (event) => {
+
+            if (
+                event.target.closest(
+                    ".screenshot-container"
+                )
+            ) {
+                return;
+            }
+
+
+            pageTouchStartX =
+                event.changedTouches[0].screenX;
+
+            pageTouchStartY =
+                event.changedTouches[0].screenY;
+
+        }
+    );
+
+
+    document.addEventListener(
+        "touchend",
+        (event) => {
+
+            if (
+                event.target.closest(
+                    ".screenshot-container"
+                )
+            ) {
+                return;
+            }
+
+
+            const pageTouchEndX =
+                event.changedTouches[0].screenX;
+
+            const pageTouchEndY =
+                event.changedTouches[0].screenY;
+
+
+            const swipeDistanceX =
+                pageTouchEndX -
+                pageTouchStartX;
+
+            const swipeDistanceY =
+                pageTouchEndY -
+                pageTouchStartY;
+
+
+            /* Zu kurze Bewegung */
+
+            if (Math.abs(swipeDistanceX) < 50) {
+                return;
+            }
+
+
+            /* Vertikales Scrollen ignorieren */
+
+            if (
+                Math.abs(swipeDistanceX) <
+                Math.abs(swipeDistanceY)
+            ) {
+                return;
+            }
+
+
+            /* Nach rechts wischen = zurück */
+
+            if (swipeDistanceX > 0) {
+
+                const backLink =
+                    document.querySelector(
+                        ".project-navigation .back-link"
+                    );
+
+
+                if (backLink) {
+
+                    window.location.href =
+                        backLink.href;
+
+                }
+
+            }
+
+        }
+    );
 
 
     showScreenshot(currentScreenshot);

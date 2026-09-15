@@ -7,6 +7,7 @@
 
     <title>Mein Portfolio</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,6 +15,7 @@
 
     <header>
         <nav>
+            <a href="#introduction">Home</a>
             <a href="#about">Über mich</a>
             <a href="#projects">Projekte</a>
             <a href="#skills">Skills</a>
@@ -27,7 +29,7 @@
 
             <div class="intro-text">
                 <h1>Hallo, ich bin Tim Köhn</h1>
-                <p>Soldat mit Leidenschaft für Software und Weiterentwicklung.</p>
+                <p>Soldat mit Leidenschaft für Software und Weiterentwicklung</p>
             </div>
 
             <div class="intro-image">
@@ -98,14 +100,6 @@
                                 class="project-preview"
                             >
 
-                            <p>
-                                Zu wissen, welche Person an welchem Tag anwesend
-                                sein wird bzw. war, ist ein bekanntes Problem.
-                                Um hier den Überblick zu behalten und die Bedienung
-                                möglichst einfach zu gestalten, entstand eines
-                                meiner ersten Projekte.
-                            </p>
-
                             <p class="technologies">
                                 Excel · VBA
                             </p>
@@ -126,15 +120,6 @@
                                     alt="Vorschaubild der Anwesenheitsliste"
                                     class="project-preview"
                             >
-
-                            <p>
-                                Dies war ein Projekt für einen Kollegen, der mit der
-                                Planung von Inhalten für einen Lehrgang betraut war.
-                                Für mich war es das erste Mal, wo ich auf Performance
-                                geachtet habe und auch verschachtelte Kontextmenüs
-                                verwendet habe.
-                            </p>
-
 
                             <p class="technologies">
                                 Excel · VBA
@@ -157,29 +142,6 @@
                                     class="project-preview"
                             >
 
-                            <p>
-                                Auf seegehenden Einheiten gibt es viele verschiedene
-                                Qualifikationen, die abgebildet werden müssen.
-                                Gerade hier können fehlende Qualifikationen schnell
-                                zu Showstoppern werden. Als Zuständiger für die Planung
-                                und Administrierung wollte ich es möglichst einfach
-                                und übersichtlich gestalten.
-                            </p>
-
-                            <p>
-                                Hierfür eine Datenbank zu erstellen, ist vielleicht
-                                nicht nötig, aber gerade die Möglichkeit, Berichte
-                                zu erstellen, war für mich der ausschlaggebende
-                                Grund für diese Entscheidung.
-                            </p>
-
-                            <p>
-                                Um den Prozess zu zeigen, zeige ich hier auch die
-                                ursprüngliche Excel-Datei, mit der ich angefangen
-                                habe. Außerdem ist dies auch eines der ersten Male,
-                                wo ich mich mit Access befasst habe.
-                            </p>
-
                             <p class="technologies">
                                 Access · VBA · SQL
                             </p>
@@ -201,18 +163,6 @@
                                     class="project-preview"
                             >
 
-                            <p>
-                                Ein kleines Projekt zum Erstellen von Rechnungen,
-                                zugeschnitten auf die Bordkantine. Die Datei war
-                                der erste Anlass, mich mit Zugriff auf bestehende
-                                Dateien zu befassen.
-                            </p>
-
-                            <p>
-                                Da es hier rein um die Erstellung der Rechnungen
-                                ging, habe ich mich gegen eine Datenbank entschieden.
-                            </p>
-
                             <p class="technologies">
                                 Excel · VBA
                             </p>
@@ -233,25 +183,7 @@
                                     alt="Hauptmenue Rollenplan"
                                     class="project-preview"
                             >
-                            <p>
-                                Dies ist definitiv eines der beiden größten Projekte,
-                                mit denen ich mich bisher befasst habe.
-                            </p>
-
-                            <p>
-                                Auf jeder Einheit gibt es klare Zuständigkeiten,
-                                die für verschiedene Situationen schon vor dem
-                                Auslaufen festgelegt werden müssen. Dieser Rollenplan
-                                beinhaltet verschiedene Stationen und Qualifikationen,
-                                die in unterschiedlichen Situationen vergeben werden
-                                müssen.
-                            </p>
-
-                            <p>
-                                Gerade aufgrund der Komplexität und der Wichtigkeit
-                                ist hier Datenintegrität ein großes Augenmerk.
-                            </p>
-
+                            
                             <p class="technologies">
                                 Access · VBA · SQL
                             </p>
@@ -306,15 +238,24 @@
 
         </section>
 
-
-
         <section id="contact">
 
             <h2>Kontakt</h2>
 
-            <p>
-                Du kannst mich über GitHub oder LinkedIn erreichen.
-            </p>
+            <div class="contact-links">
+
+                <a href="mailto:koehn.tim@googlemail.com" class="contact-link">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>E-Mail</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/tim-köhn" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+
+            </div>
+
 
         </section>
 

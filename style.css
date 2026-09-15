@@ -7,15 +7,17 @@
 }
 
 
+/* =========================
+   GRUNDLAGEN
+   ========================= */
+
 * {
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
-
 
 body {
     margin: 0;
@@ -28,10 +30,16 @@ body {
 }
 
 
+/* =========================
+   HEADER
+   ========================= */
+
 header {
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
 
     padding: 20px 40px;
@@ -44,29 +52,36 @@ header {
 
 nav {
     display: flex;
+
     justify-content: center;
+
     gap: 30px;
 }
 
-
-nav a, 
-.back-link {
+a {
+    display: inline-block;
     color: var(--text);
     text-decoration: none;
-
-    transition: color 0.2s ease;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-
-nav a:hover {
+a:hover {
     color: var(--accent);
+    transform: translateY(-3px);
 }
 
+
+/* =========================
+   PROJEKT-NAVIGATION
+   ========================= */
 
 .project-navigation {
     position: relative;
 
     display: flex;
+
     align-items: center;
 
     margin-top: 20px;
@@ -76,39 +91,41 @@ nav a:hover {
 }
 
 
+.current-project {
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--accent);
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
 main {
     max-width: 1100px;
+
     margin: 0 auto;
 }
 
 
 section {
-    padding: 60px 40px;
+    padding: 50px 10px;
 }
+
+
+/* Abstand zwischen Projektabschnitten */
 
 .project-section {
     margin-top: 80px;
 }
 
-.back-link {
-    color: var(--text);
-    text-decoration: none;
-
-    transition: color 0.2s ease;
-}
-
-.back-link:hover {
-    color: var(--accent);
-}
-
-.current-project {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
-    color: var(--accent);
-    font-weight: bold;
-}
 
 /* =========================
    INTRODUCTION
@@ -120,7 +137,8 @@ section {
     align-items: center;
     justify-content: center;
     gap: 5rem;
-    min-height: 80vh;
+    padding-top: 120px;
+    padding-bottom: 40px;
 }
 
 
@@ -131,6 +149,7 @@ section {
 
 #introduction h1 {
     font-size: 3.5rem;
+
     margin-bottom: 10px;
 }
 
@@ -152,11 +171,13 @@ section {
 #introduction .intro-image img {
     width: 300px;
     height: 380px;
+
     object-fit: cover;
 
     border-radius: 50px 10px 50px 10px;
 
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
     border: 2px solid var(--accent);
 }
 
@@ -166,22 +187,25 @@ section {
    ========================= */
 
 .project-slider {
+    position: relative;
+
     display: flex;
-    align-items: center;
-    gap: 30px;
+
+    padding: 0 80px;
 }
 
 
 .project-container {
     flex: 1;
-
     overflow: hidden;
+    border-radius: 12px;
+    transition: height 0.4s ease;
 }
 
 
 .project-track {
     display: flex;
-
+    align-items: flex-start;
     transition: transform 0.4s ease;
 }
 
@@ -192,10 +216,6 @@ section {
     background: var(--surface);
 
     padding: 40px;
-
-    border-radius: 12px;
-
-    min-height: 350px;
 }
 
 
@@ -210,12 +230,25 @@ section {
     max-width: 700px;
 }
 
+
+/* =========================
+   PROJEKT-VORSCHAUBILD
+   ========================= */
+
 .project-preview {
     width: 60%;
+
     display: block;
+
     margin: 20px auto;
+
     border-radius: 8px;
 }
+
+
+/* =========================
+   TECHNOLOGIEN
+   ========================= */
 
 .technologies {
     color: var(--accent);
@@ -229,15 +262,21 @@ section {
    ========================= */
 
 .slider-button {
-    flex: 0 0 50px;
+    position: absolute;
+
+    top: 200px;
+
+    transform: translateY(-50%);
 
     width: 50px;
     height: 50px;
 
     border: none;
+
     border-radius: 50%;
 
     background: var(--surface);
+
     color: var(--text);
 
     font-size: 2rem;
@@ -247,6 +286,18 @@ section {
     transition:
         color 0.2s ease,
         background 0.2s ease;
+
+    z-index: 10;
+}
+
+
+.slider-button.previous {
+    left: 10px;
+}
+
+
+.slider-button.next {
+    right: 10px;
 }
 
 
@@ -257,12 +308,13 @@ section {
 
 .slider-button:focus-visible {
     outline: 2px solid var(--accent);
+
     outline-offset: 3px;
 }
 
 
 /* =========================
-   SLIDER DOTS
+   PROJEKT-SLIDER DOTS
    ========================= */
 
 .slider-dots {
@@ -283,6 +335,7 @@ section {
     padding: 0;
 
     border: 2px solid var(--text-muted);
+
     border-radius: 50%;
 
     background: transparent;
@@ -303,6 +356,7 @@ section {
 
 .slider-dots button.active {
     background: var(--accent);
+
     border-color: var(--accent);
 
     transform: scale(1.5);
@@ -347,13 +401,16 @@ footer {
     color: var(--text-muted);
 }
 
+
 /* =========================
    SCREENSHOT SLIDER
    ========================= */
 
 .screenshot-slider {
     display: flex;
+
     align-items: center;
+
     gap: 20px;
 
     margin-top: 40px;
@@ -362,8 +419,10 @@ footer {
 
 .screenshot-container {
     flex: 1;
-
     overflow: hidden;
+    border-radius: 12px;
+    background: var(--surface);
+    padding: 25px;
 }
 
 
@@ -385,12 +444,9 @@ footer {
 
 .screenshot img {
     display: block;
-
     width: 100%;
     max-height: 600px;
-
     object-fit: contain;
-
     border-radius: 8px;
 }
 
@@ -402,7 +458,9 @@ footer {
 }
 
 
-/* Pfeile */
+/* =========================
+   SCREENSHOT PFEILE
+   ========================= */
 
 .screenshot-button {
     flex: 0 0 40px;
@@ -411,9 +469,11 @@ footer {
     height: 40px;
 
     border: none;
+
     border-radius: 50%;
 
     background: var(--surface);
+
     color: var(--text);
 
     font-size: 1.5rem;
@@ -431,7 +491,9 @@ footer {
 }
 
 
-/* Punkte */
+/* =========================
+   SCREENSHOT DOTS
+   ========================= */
 
 .screenshot-dots {
     display: flex;
@@ -451,6 +513,7 @@ footer {
     padding: 0;
 
     border: 2px solid var(--text-muted);
+
     border-radius: 50%;
 
     background: transparent;
@@ -466,10 +529,48 @@ footer {
 
 .screenshot-dots button.active {
     background: var(--accent);
+
     border-color: var(--accent);
 
     transform: scale(1.4);
 }
+
+/* KONTAKT */
+
+.contact-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--text);
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.contact-link i {
+    font-size: 2.5rem;
+}
+
+.contact-link span {
+    font-size: 1rem;
+}
+
+.contact-link:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
 
 /* =========================
    MOBILE
@@ -478,28 +579,58 @@ footer {
 @media (max-width: 700px) {
 
     header {
-        padding: 20px;
+        padding: 15px 20px;
     }
-
 
     nav {
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 10px 15px;
+        font-size: 0.9rem;
     }
 
 
     section {
-        padding: 70px 20px;
+        padding: 45px 20px;
     }
+
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        margin-top: 30px;
+    }
+
+
+    /* INTRODUCTION */
 
     #introduction {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
         text-align: center;
+        padding-top: 100px;
+        padding-bottom: 30px;
     }
 
     #introduction .intro-text {
         text-align: center;
+    }
+
+    #introduction h1 {
+        font-size: 2.3rem;
+        margin-bottom: 8px;
+    }
+
+    #introduction p {
+        font-size: 1rem;
     }
 
     #introduction .intro-image {
@@ -507,33 +638,80 @@ footer {
     }
 
     #introduction .intro-image img {
-        width: 200px;
-        height: 200px;
+        width: 170px;
+        height: 215px;
+        border-radius: 35px 8px 35px 8px;
     }
 
 
+    /* PROJEKTE */
+
     .project-slider {
+        padding: 0 45px;
+    }
+
+    .slider-button {
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+    }
+
+    .slider-button.previous {
+        left: 3px;
+    }
+
+    .slider-button.next {
+        right: 3px;
+    }
+
+    .project {
+        padding: 20px;
+    }
+
+    .project h3 {
+        font-size: 1.4rem;
+    }
+
+    .project-preview {
+        width: 85%;
+    }
+    .project-detail {
+        padding-top: 70px;
+    }
+
+    .project-navigation {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 10px;
     }
 
-
-    .slider-button {
-        flex: 0 0 40px;
-
-        width: 40px;
-        height: 40px;
-
-        font-size: 1.5rem;
+    .current-project {
+        position: static;
+        transform: none;
+        align-self: center;
     }
 
-
-    .project {
-        padding: 25px;
+    .screenshot-container {
+        width: 100%;
+        padding: 15px;
     }
 
+    .screenshot {
+        flex: 0 0 100%;
+        min-width: 100%;
+        padding: 0 15px;
+    }
 
-    .project h3 {
-        font-size: 1.5rem;
+    .screenshot img {
+        width: 100%;
+        max-height: 400px;
+    }
+
+    /* FOOTER */
+
+    footer {
+        padding: 30px 20px;
+        font-size: 0.9rem;
     }
 
 }
