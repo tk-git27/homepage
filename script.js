@@ -154,6 +154,13 @@ if (projectTrack) {
 
     });
 
+    window.addEventListener("load", () => {
+
+        if (projectTrack) {
+            showProject(currentProject, false);
+        }
+
+    });
 
     showProject(currentProject, false);
 
