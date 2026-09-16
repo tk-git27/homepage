@@ -413,3 +413,80 @@ if (screenshotTrack) {
     showScreenshot(currentScreenshot);
 
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+    let navigationClick = false;
+
+
+    // Tabtitel setzen
+    function updateTitle(section) {
+        if (!section) return;
+
+        const title = section.dataset.title;
+
+        if (title) {
+            document.title = title;
+        }
+    }
+
+
+    // -----------------------------
+    // Navigation
+    // -----------------------------
+
+    navLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            const targetId = link.getAttribute("href");
+            const targetSection = document.querySelector(targetId);
+
+            if (!targetSection) return;
+
+            // Observer kurzzeitig ignorieren
+            navigationClick = true;
+
+            // Sofort richtigen Titel setzen
+            updateTitle(targetSection);
+
+            // Nach dem Scrollvorgang Observer wieder aktivieren
+            setTimeout(() => {
+                navigationClick = false;
+            }, 800);
+        });
+
+    });
+
+
+    // -----------------------------
+    // Intersection Observer
+    // -----------------------------
+
+    const observer = new IntersectionObserver((entries) => {
+
+        // Wenn gerade über Navigation navigiert wurde,
+        // nichts am Titel ändern
+        if (navigationClick) return;
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                updateTitle(entry.target);
+            }
+
+        });
+
+    }, {
+        threshold: 0.5
+    });
+
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+});
