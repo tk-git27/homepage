@@ -422,7 +422,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let navigationClick = false;
 
 
+    // --------------------------------
     // Tabtitel setzen
+    // --------------------------------
+
     function updateTitle(section) {
         if (!section) return;
 
@@ -434,9 +437,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // -----------------------------
-    // Navigation
-    // -----------------------------
+    // --------------------------------
+    // Navigation anklicken
+    // --------------------------------
 
     navLinks.forEach(link => {
 
@@ -447,13 +450,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!targetSection) return;
 
-            // Observer kurzzeitig ignorieren
             navigationClick = true;
 
-            // Sofort richtigen Titel setzen
+            // Sofort den Titel der angeklickten Section setzen
             updateTitle(targetSection);
 
-            // Nach dem Scrollvorgang Observer wieder aktivieren
+            // Nach dem Scrollen Observer wieder freigeben
             setTimeout(() => {
                 navigationClick = false;
             }, 800);
@@ -462,31 +464,59 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // -----------------------------
-    // Intersection Observer
-    // -----------------------------
+    // --------------------------------
+    // Section anhand der Position bestimmen
+    // --------------------------------
 
-    const observer = new IntersectionObserver((entries) => {
+    function checkActiveSection() {
 
-        // Wenn gerade über Navigation navigiert wurde,
-        // nichts am Titel ändern
         if (navigationClick) return;
 
-        entries.forEach(entry => {
+        const viewportCenter = window.innerHeight / 2;
 
-            if (entry.isIntersecting) {
-                updateTitle(entry.target);
+        let closestSection = null;
+        let closestDistance = Infinity;
+
+        sections.forEach(section => {
+
+            const rect = section.getBoundingClientRect();
+
+            // Section muss zumindest teilweise sichtbar sein
+            if (
+                rect.bottom > 0 &&
+                rect.top < window.innerHeight
+            ) {
+
+                const sectionCenter = rect.top + rect.height / 2;
+
+                const distance = Math.abs(
+                    sectionCenter - viewportCenter
+                );
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestSection = section;
+                }
             }
-
         });
 
-    }, {
-        threshold: 0.5
-    });
+        if (closestSection) {
+            updateTitle(closestSection);
+        }
+    }
 
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    // --------------------------------
+    // Beim Scrollen prüfen
+    // --------------------------------
+
+    window.addEventListener("scroll", checkActiveSection);
+
+
+    // --------------------------------
+    // Initial prüfen
+    // --------------------------------
+
+    checkActiveSection();
 
 });
