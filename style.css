@@ -29,6 +29,20 @@ body {
     line-height: 1.6;
 }
 
+h1,
+h2,
+h3 {
+    color: var(--text);
+}
+
+.page-title {
+    margin: 0 0 1.5rem;
+    font-size: clamp(2rem, 2.5vw, 2.8rem);
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--text);
+}
+
 
 /* =========================
    HEADER
