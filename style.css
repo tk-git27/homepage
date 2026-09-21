@@ -251,6 +251,7 @@ section {
 
 .project-preview {
     width: 60%;
+    height: auto;
 
     display: block;
 
@@ -436,7 +437,7 @@ footer {
     overflow: hidden;
     border-radius: 12px;
     background: var(--surface);
-    padding: 25px;
+    padding: 50px 25px;
 }
 
 
@@ -692,6 +693,7 @@ footer {
 
     .project-preview {
         width: 85%;
+        height: auto;
     }
     .project-detail {
         padding-top: 70px;
@@ -711,7 +713,7 @@ footer {
 
     .screenshot-container {
         width: 100%;
-        padding: 15px;
+        padding: 30px 15px;
     }
 
     .screenshot {
