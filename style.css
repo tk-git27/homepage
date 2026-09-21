@@ -460,12 +460,13 @@ footer {
 .screenshot img {
     display: block;
 
-    width: calc(100% - 120px);
+    width: auto;
+    max-width: 100%;
+    height: auto;
     max-height: 600px;
 
     margin: 0 auto;
 
-    object-fit: contain;
     border-radius: 8px;
 }
 
@@ -720,7 +721,9 @@ footer {
     }
 
     .screenshot img {
-        width: 100%;
+        width: auto;
+        max-width: 100%;
+        height: auto;
         max-height: 400px;
     }
 
